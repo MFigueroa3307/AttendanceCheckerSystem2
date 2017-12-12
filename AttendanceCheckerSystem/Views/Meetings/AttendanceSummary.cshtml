@@ -1,11 +1,43 @@
-﻿@model IEnumerable<AttendanceDetailViewModel>
+﻿@model IEnumerable<AttendanceCheckerSystem.Models.Student>
 @{
-    ViewData["Title"] = "Attendance Summary";
+    ViewData["Title"] = "AttendanceSummary";
 }
 
-<h2>AttendanceSummary</h2>
+<h2>Attendance Summary</h2>
+
+<div>
+    <ol class="enrolled">
+        @foreach (var ad in Model)
+        {
+
+            <li>
+
+                <span class="studentLink">
+
+                    <span class="mattendee">@ad.ID</span>
+                    @ad.FirstName, @ad.LastName
+                    <img src="@ad.Photo" width="100" alt="photo of @ad.FirstName @ad.LastName" class="studentPhoto" />
 
 
+
+                    @*@if (ad.Attend)
+                        {
+                                <span class="attendanceNotation">attended</span>
+                            }
+                            else
+                            {
+                                <span class="attendanceNotation">absent</span>
+                            }*@
+
+
+                </span>
+
+            </li>
+
+        }
+    </ol>
+    <hr />
+</div>
 
 <div>
     <a asp-action="Index">Back to List</a>

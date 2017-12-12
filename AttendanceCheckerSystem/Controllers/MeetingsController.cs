@@ -85,9 +85,18 @@ namespace AttendanceCheckerSystem.Controllers
             return View(vm);
         }
 
-        public IActionResult AttendanceSummary()
+        public async Task<IActionResult> AttendanceSummary()
         {
-            return View();
+            IEnumerable<Student> list = await _context.Students.ToListAsync();
+
+            //var filtered_list = list.Where(s => s.FirstName.StartsWith("Ja"));
+
+            var filtered_list = from s in list
+                                where s.FirstName.StartsWith("")
+                                select s;
+
+
+            return View(filtered_list);
         }
 
 
